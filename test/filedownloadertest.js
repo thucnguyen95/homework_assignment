@@ -28,8 +28,8 @@ afterEach(function() {
 });
 
 describe('File Downloader', function () {
-    it('Should render FileDownloader', function() {
-        act(() => {
+    it('Should render FileDownloader', async function() {
+        await act(async () => {
             ReactDOM.createRoot(container).render(<App />);
         });
         
@@ -38,14 +38,11 @@ describe('File Downloader', function () {
     });
 
     describe('Clicking Select All Checkbox', function() {
-        this.beforeEach(function() {
-
-        });
-        it('Select All Checkbox should check all available files and then uncheck when clicked again', function() {
-            act(() => {
+        it('Select All Checkbox should check all available files and then uncheck when clicked again', async function() {
+            await act(async() => {
                 ReactDOM.createRoot(container).render(<App />);
             });
-            act(() => {
+            await act(async() => {
                 const selectAllCheckbox = document.querySelector('#checkbox-select-all');
                 expect(selectAllCheckbox.checked).to.be.false;
                 selectAllCheckbox.dispatchEvent(new window.MouseEvent('click', {bubbles: true}));
@@ -61,7 +58,7 @@ describe('File Downloader', function () {
                 expect(expectedFileNames).to.include(name);
             }
 
-            act(() => {
+            await act(async() => {
                 const selectAllCheckbox = document.querySelector('#checkbox-select-all');
                 expect(selectAllCheckbox.checked).to.be.true;
                 selectAllCheckbox.dispatchEvent(new window.MouseEvent('click', {bubbles: true}));
